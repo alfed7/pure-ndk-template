@@ -1,10 +1,13 @@
-#include <jni.h>
-#include <string>
+#include <android/log.h>
+#include <android/native_activity.h>
 
-extern "C" JNIEXPORT jstring JNICALL
-Java_com_example_purendktemplate_MainActivity_stringFromJNI(
-        JNIEnv* env,
-        jobject /* this */) {
-    std::string hello = "Hello from C++";
-    return env->NewStringUTF(hello.c_str());
+extern "C" void ANativeActivity_onCreate(
+        ANativeActivity* activity,
+        void* savedState,
+        size_t savedStateSize) {
+    (void) activity;
+    (void) savedState;
+    (void) savedStateSize;
+
+    __android_log_print(ANDROID_LOG_INFO, "PureNdkTemplate", "ANativeActivity_onCreate");
 }
